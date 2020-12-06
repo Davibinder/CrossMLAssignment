@@ -17,12 +17,12 @@ def create_profile(request):
             if file_type not in IMAGE_FILE_TYPES:
                 return render(request, 'main_app/error.html')
             user_pr.save()
-            testPdfText(user_pr.display_picture)
-            return render(request, 'main_app/details.html', {'user_pr': user_pr})
+            text = testPdfText(request,user_pr.display_picture)
+            return render(request, 'main_app/details.html', {'user_pr': user_pr,'text':text})
     context = {"form": form,}
     return render(request, 'main_app/create.html', context)
 
-def testPdfText(pdfFile):
+def testPdfText(request,pdfFile):
     # pdfFileObj = open(pdfFile, 'rb')
     pdfReader = PyPDF2.PdfFileReader(pdfFile)
     # printing number of pages in pdf file
@@ -33,3 +33,4 @@ def testPdfText(pdfFile):
     print(pageObj.extractText())
     # closing the pdf file object
     # pdfFileObj.close()
+    return pageObj.extractText()
