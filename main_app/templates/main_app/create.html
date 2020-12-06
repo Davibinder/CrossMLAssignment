@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Make Profile</title>
+    </head>
+    <body>
+        <center>
+            <div class="jumbotron">
+                        {% block replace %}
+                <form method="POST" enctype="multipart/form-data">
+                    <!-- Very Important csrf Token -->
+                    {% csrf_token %}
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                    <input type="submit" class="btn btn-primary btn-lg" name="register">
+            </div>
+        </center>
+        {% endblock %}
+    </body>
+</html>
