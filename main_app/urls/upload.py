@@ -1,6 +1,6 @@
 from django.urls import path
-from main_app.views.fileUpload import create_profile
+from main_app.views.fileUpload import upload_file
 
 urlpatterns = [
-    path('', create_profile, name = 'create'),
+    path('', upload_file, name = 'upload'),
 ]
