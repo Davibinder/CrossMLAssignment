@@ -15,10 +15,10 @@ def create_profile(request):
             file_type = user_pr.display_picture.url.split('.')[-1]
             file_type = file_type.lower()
             if file_type not in IMAGE_FILE_TYPES:
-                return render(request, 'main_app/error.html')
+                return render(request, 'error.html')
             # user_pr.save()
             text = getPdfRawText(user_pr.display_picture)
             imageData = genrateWordTagsFromText(text)
-            return render(request, 'main_app/details.html', {'user_pr': user_pr,'text':text,'imgData':imageData})
+            return render(request, 'details.html', {'user_pr': user_pr,'text':text,'imgData':imageData})
     context = {"form": form,}
-    return render(request, 'main_app/create.html', context)
+    return render(request, 'create.html', context)
