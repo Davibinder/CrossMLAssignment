@@ -1,9 +1,10 @@
 {% extends 'main_app/create.html' %}
 {% block replace %}
 <CENTER>
-<div class="jumbotron">
-    <h1> {{text}}</h1>
-  <img src="{{ user_pr.display_picture.url }}" class="image_responsive" height="100px" width="100px">
+<div class="dev_io_main">
+    <!--<h1> {{text}}</h1>-->
+    <img src="data:image/png;base64, {{imgData}}" alt="Red dot" />
+
 </div>
 </CENTER>
 {% endblock %}

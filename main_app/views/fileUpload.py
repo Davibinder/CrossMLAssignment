@@ -1,7 +1,7 @@
-import io
-import PyPDF2
 from django.shortcuts import render
 from main_app.forms.uploadFile import Profile_Form
+from main_app.services.pdfHandler import getPdfRawText
+from main_app.services.wordTagGenerator import genrateWordTagsFromText
 
 IMAGE_FILE_TYPES = ['pdf']
 
@@ -16,21 +16,9 @@ def create_profile(request):
             file_type = file_type.lower()
             if file_type not in IMAGE_FILE_TYPES:
                 return render(request, 'main_app/error.html')
-            user_pr.save()
-            text = testPdfText(request,user_pr.display_picture)
-            return render(request, 'main_app/details.html', {'user_pr': user_pr,'text':text})
+            # user_pr.save()
+            text = getPdfRawText(user_pr.display_picture)
+            imageData = genrateWordTagsFromText(text)
+            return render(request, 'main_app/details.html', {'user_pr': user_pr,'text':text,'imgData':imageData})
     context = {"form": form,}
     return render(request, 'main_app/create.html', context)
-
-def testPdfText(request,pdfFile):
-    # pdfFileObj = open(pdfFile, 'rb')
-    pdfReader = PyPDF2.PdfFileReader(pdfFile)
-    # printing number of pages in pdf file
-    print(pdfReader.numPages)
-    # creating a page object
-    pageObj = pdfReader.getPage(0)
-    # extracting text from page
-    print(pageObj.extractText())
-    # closing the pdf file object
-    # pdfFileObj.close()
-    return pageObj.extractText()
