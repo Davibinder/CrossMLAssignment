@@ -1,11 +1,15 @@
+import asyncio
 from django.shortcuts import render
 from main_app.forms.fileUpload import Upload_Form
 from main_app.services.pdfHandler import getPdfRawText
 from main_app.services.wordTagGenerator import genrateWordTagsFromText
 
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
+
 SUPPORTED_FILES = ['pdf']
 
-def upload_file(request):
+async def upload_file(request):
     form = Upload_Form()
     if request.method == 'POST':
         form = Upload_Form(request.POST, request.FILES)
