@@ -14,7 +14,13 @@ pip install -r requirements.txt
 ## Running the project
 ```
 python manage.py migrate
+
+(Sync Dev Mode)
 python manage.py runserver
+(ASync Dev Mode)
+pip install daphne
+daphne CrossMLAssignment.asgi:application
+
 ```
 ## Author
 Davinder Singh
