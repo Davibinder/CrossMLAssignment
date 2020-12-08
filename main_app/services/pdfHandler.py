@@ -3,7 +3,7 @@ import PyPDF2
 def getPdfRawText(pdfFile):
     """
     This function will take pdf file as object and returns extracted raw text
-    :param pdfFile: object not a path to pdf file
+    :param pdfFile: stream (pdf file object or path)
     :return: text
     """
     textData = ""
