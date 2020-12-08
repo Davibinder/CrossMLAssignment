@@ -3,7 +3,7 @@ from main_app.forms.fileUpload import Upload_Form
 from main_app.services.pdfHandler import getPdfRawText
 from main_app.services.wordTagGenerator import genrateWordTagsFromText
 
-IMAGE_FILE_TYPES = ['pdf']
+SUPPORTED_FILES = ['pdf']
 
 def upload_file(request):
     form = Upload_Form()
@@ -14,7 +14,7 @@ def upload_file(request):
             fileObj.pdfFile = request.FILES['pdfFile']
             file_type = fileObj.pdfFile.url.split('.')[-1]
             file_type = file_type.lower()
-            if file_type not in IMAGE_FILE_TYPES:
+            if file_type not in SUPPORTED_FILES:
                 return render(request, 'error.html')
             # fileObj.save()
             text = getPdfRawText(fileObj.pdfFile)
