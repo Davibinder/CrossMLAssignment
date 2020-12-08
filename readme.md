@@ -17,6 +17,7 @@ python manage.py migrate
 
 (Sync Dev Mode)
 python manage.py runserver
+OR
 (ASync Dev Mode)
 pip install daphne
 daphne CrossMLAssignment.asgi:application
